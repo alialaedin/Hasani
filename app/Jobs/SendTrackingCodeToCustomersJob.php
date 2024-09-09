@@ -18,7 +18,7 @@ class SendTrackingCodeToCustomersJob implements ShouldQueue
 	/**
 	 * Create a new job instance.
 	 */
-	public function __construct(public int $fileId)
+	public function __construct(public File $file)
 	{
 		//
 	}
@@ -28,9 +28,7 @@ class SendTrackingCodeToCustomersJob implements ShouldQueue
 	 */
 	public function handle(): void
 	{
-		$file = File::query()->findOrFail($this->fileId);
-
-		foreach ($file->customers as $customer) {
+		foreach ($this->file->customers as $customer) {
 			$output = $this->sendSms($customer->tracking_code, $customer->mobile);
 			$this->updateIsSend($output['status'], $customer);
 		}
