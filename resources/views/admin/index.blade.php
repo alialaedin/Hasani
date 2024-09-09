@@ -232,7 +232,20 @@
               ${customer.is_send ? '<span class="badge badge-success-light">ارسال شده</span>' : '<span class="badge badge-danger-light">ارسال نشده</span>'}  
             </td>  
             <td>  
-              <button class="btn btn-sm btn-icon btn-success" ${customer.is_send ? 'disabled' : ''}> <i class="fa fa-send"></i></button>  
+              <button 
+                class="btn btn-sm btn-icon btn-success"
+                onclick="${$('#SendCustomerSmsForm' + customer.id)}" 
+                ${customer.is_send ? 'disabled' : ''}> 
+                <i class="fa fa-send"></i>
+              </button>  
+              <form 
+                id="${'SendCustomerSmsForm' + customer.id}" 
+                action="{{ route('send-customer-sms') }}" 
+                method="POST" 
+                class="d-none">
+                @csrf
+                <input type="hidden" name="customer_id" value="${customer.id}}">
+              </form>
             </td>  
           </tr>  
         `;  

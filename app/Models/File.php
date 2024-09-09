@@ -149,4 +149,22 @@ class File extends Model
 			flash()->error($e->getMessage());
 		}
   }
+
+  public function updateIsSend()
+  {
+    $isNotSend = false;
+
+    foreach ($this->customers as $customer) {
+      if (!$customer->is_send) {
+        $isNotSend = true;
+        break;
+      }
+    }
+
+    if (!$isNotSend) {
+      $this->update([
+        'is_send' => 1
+      ]);
+    }
+  }
 }

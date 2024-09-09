@@ -2,6 +2,7 @@
 
 use App\Classes\Sms;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\TestController;
@@ -20,7 +21,8 @@ Route::middleware('auth:web')->group(function() {
 	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 	Route::post('/upload-file', [FileController::class, 'upload'])->name('upload-file');
 	Route::get('/download-file/{file}', [FileController::class, 'download'])->name('download-file');
-	Route::post('/send-sms/', [FileController::class, 'sms'])->name('send-sms');
+	Route::post('/send-file-sms/', [FileController::class, 'sms'])->name('send-sms');
+	Route::post('/send-customer-sms/', [CustomerController::class, 'sms'])->name('send-customer-sms');
 });
 
 Route::get('/test', [TestController::class, 'run']);

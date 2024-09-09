@@ -29,9 +29,12 @@ class SendTrackingCodeToCustomersJob implements ShouldQueue
 	public function handle(): void
 	{
 		foreach ($this->file->customers as $customer) {
-			$output = $this->sendSms($customer->tracking_code, $customer->mobile);
-			$this->updateIsSend($output['status'], $customer);
+			if (!$customer->is_send) {
+				$output = $this->sendSms($customer->tracking_code, $customer->mobile);
+				$this->updateIsSend($output['status'], $customer);
+			}
 		}
+		$this->file->updateIsSend();
 	}
 
 	private function sendSms($trackingCode, $mobile): array
