@@ -241,7 +241,7 @@
                 <input type="hidden" name="customer_id" value="${customer.id}}">
               </form>
               <button 
-                class="btn btn-sm btn-icon btn-success"
+                class="btn btn-sm btn-icon ${disabled ? 'btn-dark' : 'btn-success'}"
                 onclick="document.getElementById('SendCustomerSmsForm-${customer.id}').submit();" 
                 ${disabled}> 
                 <i class="fa fa-send"></i>
