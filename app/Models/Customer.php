@@ -24,7 +24,7 @@ class Customer extends Model
 		return $query->where('is_send', 1);
 	}
 
-	public function sendSms()
+	public function sendCustomerSms()
 	{
 		try {
 			$output = Sms::send_tracking_code(env('SMS_PATTERN'), $this->tracking_code, $this->mobile);

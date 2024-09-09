@@ -11,7 +11,7 @@ class CustomerController extends Controller
     public function sms(Request $request)
 	{
 		$customer = Customer::findOrFail($request->input('customer_id'));
-		$customer->sendSms();
+		$customer->sendCustomerSms();
 
 		return redirect()->back();
 	}
