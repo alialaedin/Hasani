@@ -74,7 +74,7 @@
               </div>
               <div class="col-12 col-lg-4">
                 <div class="form-group">
-                    <select name="is_send select2" id="IsSendSelection">
+                    <select name="is_send" id="IsSendSelection" class="form-control">
                         <option value="">انتخاب</option>
                         <option value="all">همه</option>
                         <option value="1">ارسال شده</option>
