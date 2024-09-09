@@ -20,7 +20,7 @@ Route::middleware('auth:web')->group(function() {
 	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 	Route::post('/upload-file', [FileController::class, 'upload'])->name('upload-file');
 	Route::get('/download-file/{file}', [FileController::class, 'download'])->name('download-file');
-	Route::post('/send-sms/{file}', [FileController::class, 'sms'])->name('send-sms');
+	Route::post('/send-sms/', [FileController::class, 'sms'])->name('send-sms');
 });
 
 Route::get('/test', [TestController::class, 'run']);
