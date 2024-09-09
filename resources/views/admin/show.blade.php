@@ -102,7 +102,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <p class="card-title">لیست تمامی داده های فایل {{ $file->name }} ({{ $file->customers->total() }})</p>
+        <p class="card-title">لیست تمامی داده های فایل {{ $file->name }} ({{ $customers->total() }})</p>
       </div>
       <div class="card-body">
         <div class="table-responsive">
