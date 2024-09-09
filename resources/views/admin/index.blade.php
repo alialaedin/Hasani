@@ -11,6 +11,16 @@
 @section('content')
 
 <div class="row">
+  <div class="col-12">
+    <div class="card bg-warning">
+      <div class="card-body py-3">
+        <p class="fs-16 font-weight-bold">برای آپلود فایل اکسل توجه داشته باشید که ستون اول شماره موبایل ها و ستون دوم کد رهگیری ها قرار بگیرد .</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
 
   <div class="col-lg-4">
     <div class="card">
@@ -124,12 +134,21 @@
                       <td>
                         <button 
                           @class(['btn', 'btn-sm', 'btn-icon', 'btn-success' => !$file->is_send, 'btn-dark' => $file->is_send])
-                          class="btn btn-sm btn-icon btn-success" 
+                          {{-- class="btn btn-sm btn-icon btn-success"  --}}
                           data-toggle="tooltip"
                           data-original-title="ارسال پیامک"
+                          onclick="$('#SendSmsForm-{{ $file->id }}').submit()"
                           @disabled($file->is_send)>
                           <i class="fa fa-send"></i>
                         </button>
+                        <form 
+                          id="SendSmsForm-{{ $file->id }}" 
+                          action="{{ route('send-sms') }}" 
+                          method="POST" 
+                          class="d-none">
+                          @csrf
+                          <input type="hidden" name="file_id" value="{{ $file->id }}">
+                        </form>
                         <a 
                           href="{{ route('download-file', $file) }}"
                           data-toggle="tooltip"

@@ -77,8 +77,7 @@ class Sms
 
 	public static function execute_manually_to_kavenegar($data = null)
 	{
-		$coreSetting = app(CoreSettings::class);
-		$url = "https://api.kavenegar.com/v1/" . $coreSetting->get('sms.api_key') . "/verify/lookup.json/";
+		$url = "https://api.kavenegar.com/v1/" . env('KAVENEGAR_API_KEY') . "/verify/lookup.json/";
 
 		$headers = [
 			'Accept: application/json',
@@ -126,17 +125,17 @@ class Sms
 		}
 	}
 
-	public static function shopit_neworder($pattern, $data, $mobile)
+	public static function send_tracking_code($pattern, $trackingCode, $mobile)
 	{
 		$smsPatternManually = [
 			"receptor" => $mobile,
-			"token" => $data['order_id'],
+			"token" => $trackingCode,
 			"token2" => null,
 			"token3" => null,
 			"template" => $pattern,
 			"type" => null,
-			"token10" => ($data['full_name'] ?? null),
-			"token20" => ($data['status'] ?? null),
+			"token10" => null,
+			"token20" => null,
 		];
 
 		return self::execute_manually_to_kavenegar($smsPatternManually);

@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Classes\Helpers;
 use App\Events\UploadFile;
+use App\Jobs\SendTrackingCodeToCustomersJob;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Event;
@@ -13,6 +15,7 @@ class File extends Model
 {
   private const FAILED_MESSAGE = 'خطا در آپلود فایل';
   private const SUCCESS_MESSAGE = 'فایل با موفقیت بارگذاری شد';
+  private const FILE_NOT_FOUND_MESSAGE = 'فایل فرستاده شده معتبر نمی باشد';
   public const FILE_NAME = 'excel_file';
   public const FILE_DIRECTORY = 'files/';
   public const FILE_DISK = 'local';
@@ -133,5 +136,19 @@ class File extends Model
     } else {
       return self::STATUSES[self::STATUS_NOT_ALL_SENT];
     }
+  }
+
+  public static function sendSms(File $file)
+  {
+    if (!$file) {
+      throw Helpers::makeWebValidationException(self::FILE_NOT_FOUND_MESSAGE);
+		}
+
+		try {
+			SendTrackingCodeToCustomersJob::dispatch($file->id)->delay(now()->addSeconds(10));
+			flash()->success('پیامک ها فرستاده شد');
+		} catch (\Exception $e) {
+			flash()->error($e->getMessage());
+		}
   }
 }
