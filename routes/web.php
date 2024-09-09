@@ -1,6 +1,5 @@
 <?php
 
-use App\Classes\Sms;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
