@@ -20,7 +20,7 @@ class AuthController extends Controller
 		if (Auth::guard('web')->attempt($request->except("_token"))) {
 			$request->session()->regenerate();
 			flash()->success('با موفقیت وارد شدید');
-			return redirect()->intended('dashboard');
+			return redirect()->intended('files');
 		}
 
 		return back()->withErrors([
