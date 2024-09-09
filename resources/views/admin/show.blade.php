@@ -59,7 +59,7 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <form action="{{ route('file-data') }}" class="col-12" method="GET">
+          <form action="{{ route('file-data', $file) }}" class="col-12" method="GET">
             @csrf
             <div class="row">
               <div class="col-12 col-lg-4">
@@ -89,7 +89,7 @@
               </div>
               <div class="col-12 col-lg-4">
                 <div class="form-group">
-                  <a href="{{ route('file-data') }}" class="btn btn-danger btn-block">حذف فیلترها <i class="fa fa-close mr-1"></i></a>
+                  <a href="{{ route('file-data', $file) }}" class="btn btn-danger btn-block">حذف فیلترها <i class="fa fa-close mr-1"></i></a>
                 </div>
               </div>
             </div>
