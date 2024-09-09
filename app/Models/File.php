@@ -35,7 +35,7 @@ class File extends Model
       'css_class' => 'badge badge-info-light',
     ],
     self::STATUS_ALL_SENT => [
-      'name' => 'همه ارسال نشده',
+      'name' => 'همه ارسال شده',
       'css_class' => 'badge badge-success-light',
     ],
     self::STATUS_NOT_ALL_SENT => [
