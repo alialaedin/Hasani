@@ -73,11 +73,10 @@ class File extends Model
   public static function uploadFile($request)
   {
     $isValid = static::validateFile($request);
-
     if ($isValid) {
       Event::dispatch(new UploadFile($request->file(self::FILE_NAME)));
     } else {
-      static::throwValidationError();
+      self::throwValidationError();
     }
   }
 
