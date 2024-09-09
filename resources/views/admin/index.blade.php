@@ -222,7 +222,7 @@
     let tableBodyData = '';
     if (file.customers.length > 0) {
       file.customers.forEach(customer => { 
-        let disabled = customer.is_send ? true : false; 
+        let disabled = customer.is_send ? 'disabled' : '' 
         let row = `  
           <tr>  
             <td class="font-weight-bold">${counter}</td>  
@@ -243,7 +243,7 @@
               <button 
                 class="btn btn-sm btn-icon btn-success"
                 onclick="document.getElementById('SendCustomerSmsForm-${customer.id}').submit();" 
-                @disabled(json_decode(${disabled}))> 
+                ${disabled}> 
                 <i class="fa fa-send"></i>
               </button>  
             </td>  
