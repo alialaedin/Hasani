@@ -134,7 +134,6 @@
                       <td>
                         <button 
                           @class(['btn', 'btn-sm', 'btn-icon', 'btn-success' => !$file->is_send, 'btn-dark' => $file->is_send])
-                          {{-- class="btn btn-sm btn-icon btn-success"  --}}
                           data-toggle="tooltip"
                           data-original-title="ارسال پیامک"
                           onclick="$('#SendSmsForm-{{ $file->id }}').submit()"
@@ -243,7 +242,7 @@
               <button 
                 class="btn btn-sm btn-icon btn-success"
                 onclick="document.getElementById('SendCustomerSmsForm-${customer.id}').submit();" 
-                ${customer.is_send ? 'disabled' : ''}> 
+                @disabled(${customer.is_send})> 
                 <i class="fa fa-send"></i>
               </button>  
             </td>  
