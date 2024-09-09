@@ -103,6 +103,7 @@
     <div class="card">
       <div class="card-header">
         <p class="card-title">لیست تمامی داده های فایل {{ $file->name }} ({{ $customers->total() }})</p>
+				<a href="{{ route('dashboard') }}" class="btn btn-sm btn-warning">بازگشت</a>
       </div>
       <div class="card-body">
         <div class="table-responsive">
