@@ -24,8 +24,17 @@
 
   <div class="col-lg-4">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header pb-0">
         <h2 class="card-title">آپلود فایل اکسل</h2>
+        <div class="card-options">
+          <a 
+            href="{{ asset('assets/excel/test.xlsx') }}"
+            class="btn btn-outline-info btn-sm" 
+            download>
+            نمونه فایل  
+            <i class="fa fa-download"></i>
+          </a>
+        </div>
       </div>
       <div class="card-body">
         <div class="row">
@@ -36,7 +45,7 @@
                 <div class="form-group">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" name="excel_file">
-                    <label class="custom-file-label">Choose file</label>
+                    <label class="custom-file-label">انتخاب فایل اکسل</label>
                   </div>
                 </div>
               </div>
