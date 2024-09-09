@@ -10,11 +10,22 @@ class DashboardController extends Controller
 	public function index()
 	{
 		$files = File::query()
-		->with('customers')
-		->filters()
-		->latest('id')
-		->paginate();
+			->with('customers')
+			->filters()
+			->latest('id')
+			->paginate();
 
 		return view('admin.index', compact('files'));
+	}
+
+	public function show(File $file)
+	{
+		$customers = $file
+			->customers()
+			->orderByDesc('id')
+			->filters()
+			->paginate();
+
+		return view('admin.show', compact('file', 'customers'));
 	}
 }

@@ -17,7 +17,8 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth:web')->group(function() {
 	Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+	Route::get('/files', [DashboardController::class, 'index'])->name('dashboard');
+	Route::get('/files/{file}', [DashboardController::class, 'index'])->name('file-data');
 	Route::post('/upload-file', [FileController::class, 'upload'])->name('upload-file');
 	Route::get('/download-file/{file}', [FileController::class, 'download'])->name('download-file');
 	Route::post('/send-file-sms/', [FileController::class, 'sms'])->name('send-sms');

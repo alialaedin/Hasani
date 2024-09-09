@@ -44,4 +44,16 @@ class Customer extends Model
 			flash()->error($e->getMessage());
 		}
 	}
+
+	public function scopeFilters($query)
+  {
+    return $query
+      ->when(request('mobile'), fn ($q) => $q->where('mobile', request('mobile')))
+      ->when(request('tracking_code'), fn ($q) => $q->where('tracking_code', request('tracking_code')))
+			->when(!is_null(request('is_send')), function ($q) {
+				if (request('is_send') != 'all') {
+					$q->where('is_send', request('is_send'));
+				}
+			});
+  }
 }

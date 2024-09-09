@@ -164,12 +164,17 @@
                           class="btn btn-sm btn-icon btn-warning">
                           <i class="fa fa-download"></i>
                         </a>
-                      <button 
-                        onclick="showData({{ json_encode($file) }})"
-                        class="btn btn-sm btn-icon btn-primary">
-                        <i class="fa fa-eye"></i>
-                      </button>
-                    </td>
+                        <a 
+                          href="{{ route('file-data', $file) }}"
+                          class="btn btn-sm btn-icon btn-primary">
+                          <i class="fa fa-eye"></i>
+                        </a>
+                        {{-- <button 
+                          onclick="showData({{ json_encode($file) }})"
+                          class="btn btn-sm btn-icon btn-primary">
+                          <i class="fa fa-eye"></i>
+                        </button> --}}
+                      </td>
                     </tr>
                   @empty
                   <tr>
@@ -180,6 +185,7 @@
                   @endforelse
                 </tbody>
               </table>
+              {{ $files->onEachSide(0)->links("vendor.pagination.bootstrap-4") }}
             </div>
           </div>
         </div>
