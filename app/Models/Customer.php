@@ -11,7 +11,8 @@ class Customer extends Model
 	protected $fillable = [
 		'tracking_code',
 		'mobile',
-		'file_id'
+		'file_id',
+		'is_send'
 	];
 
 	public function file(): BelongsTo
