@@ -49,6 +49,6 @@ return [
 
     'map' => [
         'farazsms'      => App\Classes\Sms\Drivers\Farazsms::class,
-        'kavenegar'     => App\Classes\Sms\Drivers\Kavenegar::class
+        'kavehnegar'     => App\Classes\Sms\Drivers\Kavenegar::class
     ]
 ];
