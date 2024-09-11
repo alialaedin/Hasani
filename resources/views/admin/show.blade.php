@@ -76,9 +76,9 @@
                 <div class="form-group">
                     <select name="is_send" id="IsSendSelection" class="form-control">
                         <option value="">انتخاب</option>
-                        <option value="all">همه</option>
-                        <option value="1">ارسال شده</option>
-                        <option value="0">ارسال نشده</option>
+                        <option value="all" @selected(request('is_send') == 'all')>همه</option>
+                        <option value="1" @selected(request('is_send') == '1')>ارسال شده</option>
+                        <option value="0" @selected(request('is_send') == '0')>ارسال نشده</option>
                     </select>
                 </div>
               </div>
