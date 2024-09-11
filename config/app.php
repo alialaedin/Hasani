@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Kavenegar\Laravel\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        App\Classes\Sms\SmsServiceProvider::class
     ])->toArray(),
 
     /*
