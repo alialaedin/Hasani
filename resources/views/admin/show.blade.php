@@ -168,7 +168,7 @@
                   </tr>
                   @empty
                   <tr>
-                    <td colspan="5">
+                    <td colspan="7">
                       <span class="text-danger font-weight-bold fs-16">هیچ داده ای یافت نشد !</span>
                     </td>
                   </tr>
