@@ -20,8 +20,8 @@ class SmsService
     public function __construct()
     {
         $this->driver = config('sms.default');
+        dd(config('sms.map.'.$this->driver), $this->driver);
         $this->class = config('sms.map.'.$this->driver);
-
     }
 
     /**
@@ -76,9 +76,7 @@ class SmsService
      */
     public function drive($key,$params = [])
     {
-        dd($this->class);
         $class = new $this->class;
-
 
        return call_user_func_array(array($class,$key),$params);
     }
