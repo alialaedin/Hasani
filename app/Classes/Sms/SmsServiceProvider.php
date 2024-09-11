@@ -20,9 +20,9 @@ class SmsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/config/sms.php' => config_path('sms.php')
         ]);
-        if (!AppServiceProvider::$configurationIsCached || AppServiceProvider::$runningInConsole) {
+        // if (!AppServiceProvider::$configurationIsCached || AppServiceProvider::$runningInConsole) {
             $this->mergeConfigFrom(__DIR__ . '/config/sms.php', 'sms');
-        }
+        // }
     }
 
 }
