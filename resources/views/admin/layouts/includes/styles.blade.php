@@ -27,6 +27,6 @@
   #content {
     margin-right: 0;
     margin-top: 120px;
-    padding-inline: 160px;
+    padding-inline: 10%;
   }
 </style>
