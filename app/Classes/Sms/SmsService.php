@@ -2,8 +2,7 @@
 
 namespace App\Classes\Sms;
 
-use App\Classes\Core\Helpers\Helpers;
-use App\Classes\Helpers as ClassesHelpers;
+use App\Classes\Helpers;
 
 class SmsService
 {
@@ -56,7 +55,7 @@ class SmsService
     public function pattern($code = null)
     {
         if (!$code) {
-            throw ClassesHelpers::makeWebValidationException('توسعه دهنده گرامی؛ لطفا پترن ارسال این نوع پیامک را در تنظیمات مقداردهی کنید');
+            throw Helpers::makeWebValidationException('توسعه دهنده گرامی؛ لطفا پترن ارسال این نوع پیامک را در تنظیمات مقداردهی کنید');
         }
         $drive = $this->drive('pattern',[$code]);
 
