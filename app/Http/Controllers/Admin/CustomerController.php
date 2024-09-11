@@ -12,7 +12,8 @@ class CustomerController extends Controller
     public function sms(Request $request)
 	{
 		$customer = Customer::findOrFail($request->input('customer_id'));
-		SendTrackingCodeToOneCustomerJob::dispatch($customer)->delay(now()->addSeconds(10));
+		$customer->sendCustomerSms();
+		// SendTrackingCodeToOneCustomerJob::dispatch($customer)->delay(now()->addSeconds(10));
 
 		return redirect()->back();
 	}
