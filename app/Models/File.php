@@ -8,6 +8,7 @@ use App\Jobs\SendTrackingCodeToCustomersJob;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -144,9 +145,10 @@ class File extends Model
 		}
 		try {
 			SendTrackingCodeToCustomersJob::dispatch($file)->delay(now()->addSeconds(10));
-			flash()->success('پیامک ها فرستاده شد');
+			flash()->success(message: 'پیامک ها فرستاده شد');
 		} catch (\Exception $e) {
 			flash()->error($e->getMessage());
+      Log::error($e->getMessage());
 		}
   }
 
