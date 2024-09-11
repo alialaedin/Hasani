@@ -19,6 +19,7 @@ Route::middleware('auth:web')->group(function() {
 	Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 	Route::get('/files', [DashboardController::class, 'index'])->name('dashboard');
 	Route::get('/files/{file}', [DashboardController::class, 'show'])->name('file-data');
+	Route::delete('/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 	Route::post('/upload-file', [FileController::class, 'upload'])->name('upload-file');
 	Route::get('/download-file/{file}', [FileController::class, 'download'])->name('download-file');
 	Route::post('/send-file-sms/', [FileController::class, 'sms'])->name('send-sms');

@@ -8,12 +8,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Customer extends Model
 {
+	private const DELETE_SUCCESS_MESSAGE = 'فایل با موفقیت حذف شد';
+
 	protected $fillable = [
 		'tracking_code',
 		'mobile',
 		'file_id',
-		'is_send'
+		'is_send',
+		'sended_at'
 	];
+
+	public static function booted(): void
+  {
+    static::created(fn() => flash()->success(self::DELETE_SUCCESS_MESSAGE));
+  }
 
 	public function file(): BelongsTo
 	{
@@ -32,28 +40,33 @@ class Customer extends Model
 
 			if ($output['status'] == 200) {
 				$this->update([
-					'is_send' => 1
+					'is_send' => 1,
+					'sended_at' => now()
 				]);
 			}
 
 			$this->file->updateIsSend();
 
 			flash()->success('پیامک فرستاده شد');
-
 		} catch (\Exception $e) {
 			flash()->error($e->getMessage());
 		}
 	}
 
 	public function scopeFilters($query)
-  {
-    return $query
-      ->when(request('mobile'), fn ($q) => $q->where('mobile', request('mobile')))
-      ->when(request('tracking_code'), fn ($q) => $q->where('tracking_code', request('tracking_code')))
+	{
+		return $query
+			->when(request('mobile'), fn($q) => $q->where('mobile', request('mobile')))
+			->when(request('tracking_code'), fn($q) => $q->where('tracking_code', request('tracking_code')))
 			->when(!is_null(request('is_send')), function ($q) {
 				if (request('is_send') != 'all') {
 					$q->where('is_send', request('is_send'));
 				}
 			});
-  }
+	}
+
+	public function getSendedAtAttribute()
+	{
+		return $this->attributes['sended_at'] ? verta($this->attributes['sended_at']) : '-';
+	}
 }

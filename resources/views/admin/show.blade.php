@@ -117,7 +117,9 @@
 										<th class="fs-16 font-weight-bold">ردیف</th>
 										<th class="fs-16">موبایل</th>
 										<th class="fs-16">کد رهگیری</th>
+										<th class="fs-16">کد</th>
 										<th class="fs-16">وضعیت ارسال</th>
+										<th class="fs-16">زمان ارسال</th>
 										<th class="fs-16">عملیات</th>
 									</tr>
                 </thead>
@@ -127,6 +129,7 @@
                     <td class="font-weight-bold">{{ $loop->iteration }}</td>  
                     <td>{{ $customer->mobile }}</td>  
                     <td>{{ $customer->tracking_code }}</td>  
+                    <td>{{ $customer->id }}</td>  
                     <td>  
 											@if ($customer->is_send)
 												<span class="badge badge-success-light">ارسال شده</span>
@@ -134,12 +137,9 @@
 												<span class="badge badge-danger-light">ارسال نشده</span>
 											@endif
                     </td>  
+                    <td>{{ $customer->sended_at }}</td>  
                     <td>  
-                      <form 
-                        id="SendCustomerSmsForm-{{ $customer->id }}" 
-                        action="{{ route('send-customer-sms') }}" 
-                        method="POST" 
-                        class="d-none">
+                      <form id="SendCustomerSmsForm-{{ $customer->id }}" action="{{ route('send-customer-sms') }}" method="POST" class="d-none">
                         @csrf
                         <input type="hidden" name="customer_id" value="${customer.id}}">
                       </form>
@@ -149,6 +149,21 @@
                         @disabled($customer->is_send)> 
                         <i class="fa fa-send"></i>
                       </button>  
+                      <button
+                        onclick="confirmDelete('delete-{{ $customer->id }}')"
+                        class="btn btn-sm btn-icon btn-danger text-white"
+                        data-toggle="tooltip"
+                        data-original-title="حذف">
+                        <i class="fa fa-trash-o"></i>
+                      </button>
+                      <form
+                        action="{{ route('customers.destroy', $customer) }}"
+                        method="POST"
+                        id="delete-{{ $customer->id }}"
+                        style="display: none">
+                        @csrf
+                        @method('DELETE')
+                      </form>  
                     </td>  
                   </tr>
                   @empty
