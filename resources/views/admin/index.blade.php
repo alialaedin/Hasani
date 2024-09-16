@@ -169,11 +169,6 @@
                           class="btn btn-sm btn-icon btn-primary">
                           <i class="fa fa-eye"></i>
                         </a>
-                        {{-- <button 
-                          onclick="showData({{ json_encode($file) }})"
-                          class="btn btn-sm btn-icon btn-primary">
-                          <i class="fa fa-eye"></i>
-                        </button> --}}
                       </td>
                     </tr>
                   @empty

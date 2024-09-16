@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    public function sms(Request $request): mixed|RedirectResponse
+    public function sms(Request $request): RedirectResponse
 	{
 		$customer = Customer::findOrFail($request->input('customer_id'));
 		$customer->sendCustomerSms();
