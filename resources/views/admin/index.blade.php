@@ -146,7 +146,7 @@
                           data-toggle="tooltip"
                           data-original-title="ارسال پیامک"
                           onclick="$('#SendSmsForm-{{ $file->id }}').submit()"
-                          @disabled($file->is_send)>
+                          @disabled(!$file->canSend())>
                           <i class="fa fa-send"></i>
                         </button>
                         <form 

@@ -62,6 +62,11 @@ class File extends Model
     return $this->customers()->sent()->count();
   }
 
+  public function getCountCustomersAttribute(): int
+  {
+    return $this->customers()->count();
+  }
+
   public static function generateFileName(File $file)
   {
     $newFilePath = Str::remove(self::FILE_DIRECTORY, $file->path);
@@ -168,5 +173,13 @@ class File extends Model
         'is_send' => 1
       ]);
     }
+  }
+
+  public function canSend(): bool
+  {
+    return 
+      $this->count_customers > 0 &&
+      $this->is_send == 0 &&
+      $this->count_customers_sent < $this->count_customers;
   }
 }
