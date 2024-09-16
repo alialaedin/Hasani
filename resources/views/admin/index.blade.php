@@ -141,12 +141,13 @@
                         <span @class($status['css_class'])> {{ $status['name'] }} </span>
                       </td>
                       <td>
+                        @php($canSend = $file->canSend())
                         <button 
-                          @class(['btn', 'btn-sm', 'btn-icon', 'btn-success' => !$file->is_send, 'btn-dark' => $file->is_send])
+                          @class(['btn', 'btn-sm', 'btn-icon', 'btn-success' => $canSend, 'btn-dark' => !$canSend])
                           data-toggle="tooltip"
                           data-original-title="ارسال پیامک"
                           onclick="$('#SendSmsForm-{{ $file->id }}').submit()"
-                          @disabled(!$file->canSend())>
+                          @disabled(!$canSend)>
                           <i class="fa fa-send"></i>
                         </button>
                         <form 
