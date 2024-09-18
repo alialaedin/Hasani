@@ -14,7 +14,8 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "maatwebsite/excel": "3.1.56",
-        "php-flasher/flasher-laravel": "^1.15"
+        "php-flasher/flasher-laravel": "^1.15",
+        "yoeunes/toastr": "^2.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -46,6 +46,7 @@ class SendTrackingCodeToCustomersJob implements ShouldQueue
 	private function updateIsSend(Customer $customer)
 	{
 		$customer->is_send = 1;
+		$customer->sended_at = now();
 		$customer->save();
 	}
 }

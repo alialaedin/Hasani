@@ -10,7 +10,7 @@ return [
     | You can switch to a different driver at runtime.
     |
     */
-    'default' => 'kavehnegar',
+    'default' => 'kavenegar',
     /*
     |--------------------------------------------------------------------------
     | List of Drivers
@@ -29,7 +29,7 @@ return [
             'urlNormal'   => 'https://ippanel.com/services.jspd',
             'from'        => '+983000505',
         ],
-        'kavehnegar' => [
+        'kavenegar' => [
             'api_key'    => env('KAVENEGAR_API_KEY'),
             'from'       => '',
         ]
