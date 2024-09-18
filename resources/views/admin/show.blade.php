@@ -141,16 +141,16 @@
                     <td>{{ $customer->sended_at ? verta($customer->sended_at)->formatDate() : '-' }}</td>  
                     <td>{{ $customer->sended_at ? verta($customer->sended_at)->formatTime() : '-' }}</td>  
                     <td>  
-                      {{-- <form id="SendCustomerSmsForm-{{ $customer->id }}" action="{{ route('send-customer-sms') }}" method="POST" class="d-none">
+                      <form id="SendCustomerSmsForm-{{ $customer->id }}" action="{{ route('send-customer-sms') }}" method="POST" class="d-none">
                         @csrf
-                        <input type="hidden" name="customer_id" value="${customer.id}}">
+                        <input type="hidden" name="customer_id" value="{{ $customer->id }}">
                       </form>
                       <button 
 												@class(['btn', 'btn-sm', 'btn-icon', 'btn-success' => !$customer->is_send, 'btn-dark' => $customer->is_send])
                         onclick="$('#SendCustomerSmsForm-{{ $customer->id }}').submit();" 
                         @disabled($customer->is_send)> 
                         <i class="fa fa-send"></i>
-                      </button>   --}}
+                      </button>  
                       <button
                         onclick="confirmDelete('delete-{{ $customer->id }}')"
                         class="btn btn-sm btn-icon btn-danger text-white"
