@@ -119,7 +119,8 @@
 										<th class="fs-16">کد رهگیری</th>
 										<th class="fs-16">کد</th>
 										<th class="fs-16">وضعیت ارسال</th>
-										<th class="fs-16">زمان ارسال</th>
+										<th class="fs-16">تاریخ ارسال</th>
+										<th class="fs-16">ساعت</th>
 										<th class="fs-16">عملیات</th>
 									</tr>
                 </thead>
@@ -137,7 +138,8 @@
 												<span class="badge badge-danger-light">ارسال نشده</span>
 											@endif
                     </td>  
-                    <td>{{ $customer->sended_at }}</td>  
+                    <td>{{ $customer->sended_at ? verta($customer->sended_at)->formatDate() : '-' }}</td>  
+                    <td>{{ $customer->sended_at ? verta($customer->sended_at)->formatTime() : '-' }}</td>  
                     <td>  
                       {{-- <form id="SendCustomerSmsForm-{{ $customer->id }}" action="{{ route('send-customer-sms') }}" method="POST" class="d-none">
                         @csrf

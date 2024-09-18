@@ -64,9 +64,4 @@ class Customer extends Model
 				}
 			});
 	}
-
-	public function getSendedAtAttribute()
-	{
-		return $this->attributes['sended_at'] ? verta($this->attributes['sended_at']) : '-';
-	}
 }
