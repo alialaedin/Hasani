@@ -150,9 +150,9 @@ class File extends Model
 		}
 		try {
 			SendTrackingCodeToCustomersJob::dispatch($file)->delay(now()->addSeconds(10));
-			toastr()->success('پیامک ها فرستاده شد');
+			flash()->success('پیامک ها فرستاده شد');
 		} catch (\Exception $e) {
-			toastr()->error($e->getMessage());
+			flash()->error($e->getMessage());
       Log::error($e->getMessage());
 		}
   }
