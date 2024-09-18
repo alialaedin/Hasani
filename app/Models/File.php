@@ -148,6 +148,9 @@ class File extends Model
     if (!$file) {
       throw Helpers::makeWebValidationException(self::FILE_NOT_FOUND_MESSAGE);
 		}
+
+		SendTrackingCodeToCustomersJob::dispatch($file)->delay(now()->addSeconds(10));
+
 		try {
 			SendTrackingCodeToCustomersJob::dispatch($file)->delay(now()->addSeconds(10));
 			flash()->success('پیامک ها فرستاده شد');

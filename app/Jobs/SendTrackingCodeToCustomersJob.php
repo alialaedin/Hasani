@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class SendTrackingCodeToCustomersJob implements ShouldQueue
 {
@@ -25,9 +26,14 @@ class SendTrackingCodeToCustomersJob implements ShouldQueue
 		foreach ($this->file->customers->chunk(10) as $chunk) {
 			foreach ($chunk as $customer) {
 				if (!$customer->is_send) {
-					$output = $this->sendSms($customer->tracking_code, $customer->mobile);
-					if ($output && $output['status'] == 200) {
-						$this->updateIsSend($customer);
+					try {
+						$output = $this->sendSms($customer->tracking_code, $customer->mobile);
+						if ($output && $output['status'] == 200) {
+							$this->updateIsSend($customer);
+						}
+					} catch (\Exception $e) {
+						flash()->error($e->getMessage());
+						Log::error($e->getMessage());
 					}
 				}
 			}
