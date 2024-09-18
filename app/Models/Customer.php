@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Classes\Sms;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Log;
 
 class Customer extends Model
 {
@@ -50,6 +51,7 @@ class Customer extends Model
 			flash()->success('پیامک فرستاده شد');
 		} catch (\Exception $e) {
 			flash()->error($e->getMessage());
+			Log::error($e->getMessage());
 		}
 	}
 
